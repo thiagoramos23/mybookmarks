@@ -1,0 +1,5 @@
+<h1>Edit Bookmark</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.bookmark_path(@conn, :update, @bookmark)) %>
+
+<span><%= link "Back", to: Routes.bookmark_path(@conn, :index) %></span>
