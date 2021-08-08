@@ -16,12 +16,6 @@ defmodule MybookmarksWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", MybookmarksWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", MybookmarksWeb do
   #   pipe_through :api
@@ -61,7 +55,7 @@ defmodule MybookmarksWeb.Router do
   scope "/", MybookmarksWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    resources "/bookmarks", BookmarkController
+    resources "/", BookmarkController
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
