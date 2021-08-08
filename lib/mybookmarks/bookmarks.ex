@@ -28,18 +28,28 @@ defmodule Mybookmarks.Bookmarks do
 
   ## Examples
 
-      iex> list_bookmarks()
+      iex> list_bookmarks_by_user(user)
       [%Bookmark{}, ...]
 
   """
   def list_bookmarks_by_user(user) do
-    query = from b in Bookmark,
-      where: b.user_id == ^user.id,
-      order_by: b.name
-    Repo.all(query)
+    Repo.all(Bookmark.bookmarks_by_user(user))
     |> Repo.preload(:user)
   end
 
+  @doc """
+  Returns the list of bookmarks that matches the search term for the user.
+
+  ## Examples
+
+      iex> list_searched_bookmarks_by_user(user, "Test")
+      [%Bookmark{}, ...]
+
+  """
+  def list_searched_bookmarks_by_user(user, search) do
+    Repo.all(Bookmark.bookmarks_by_user_match_term(user, search))
+    |> Repo.preload(:user)
+  end
 
   @doc """
   Gets a single bookmark.

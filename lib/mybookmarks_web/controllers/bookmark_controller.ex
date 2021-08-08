@@ -9,6 +9,11 @@ defmodule MybookmarksWeb.BookmarkController do
     render(conn, "index.html", bookmarks: bookmarks)
   end
 
+  def search(conn, %{"search" => search} = _params) do
+    bookmarks = Bookmarks.list_searched_bookmarks_by_user(conn.assigns.current_user, search)
+    render(conn, "index.html", bookmarks: bookmarks)
+  end
+
   def new(conn, _params) do
     changeset = Bookmarks.change_bookmark(%Bookmark{})
     render(conn, "new.html", changeset: changeset)
