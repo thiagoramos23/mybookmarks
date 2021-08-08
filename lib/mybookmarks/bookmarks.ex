@@ -34,7 +34,8 @@ defmodule Mybookmarks.Bookmarks do
   """
   def list_bookmarks_by_user(user) do
     query = from b in Bookmark,
-              where: b.user_id == ^user.id
+      where: b.user_id == ^user.id,
+      order_by: b.name
     Repo.all(query)
     |> Repo.preload(:user)
   end
