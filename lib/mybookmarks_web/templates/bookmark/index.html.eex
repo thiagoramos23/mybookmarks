@@ -1,27 +1,68 @@
-<h1>Listing Bookmarks</h1>
+<h1 class="text-4xl antialiased text-purple-800 text-medium">Listing Bookmarks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Url</th>
+<%# <table> %>
+<%#   <thead> %>
+<%#     <tr> %>
+<%#       <th>Name</th> %>
+<%#       <th>Url</th> %>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for bookmark <- @bookmarks do %>
-    <tr>
-      <td><%= bookmark.name %></td>
-      <td><a href="<%= bookmark.url %>"><%= bookmark.url %></a></td>
+<%#       <th></th> %>
+<%#     </tr> %>
+<%#   </thead> %>
+<%#   <tbody> %>
+<%# <%= for bookmark <- @bookmarks do %1> %>
+<%#     <tr> %>
+<%#       <td><%= bookmark.name %1></td> %>
+<%#       <td><a href="<%= bookmark.url %1>"><%= bookmark.url %1></a></td> %>
 
-      <td>
-        <span><%= link "Edit", to: Routes.bookmark_path(@conn, :edit, bookmark) %></span>
-        <span><%= link "Delete", to: Routes.bookmark_path(@conn, :delete, bookmark), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+<%#       <td> %>
+<%#         <span><%= link "Edit", to: Routes.bookmark_path(@conn, :edit, bookmark) %1></span> %>
+<%#         <span><%= link "Delete", to: Routes.bookmark_path(@conn, :delete, bookmark), method: :delete, data: [confirm: "Are you sure?"] %1></span> %>
+<%#       </td> %>
+<%#     </tr> %>
+<%# <% end %1> %>
+<%#   </tbody> %>
+<%# </table> %>
 
+
+</br>
 <span><%= link "New Bookmark", to: Routes.bookmark_path(@conn, :new) %></span>
+
+</br>
+</br>
+<div class="overflow-hidden bg-white shadow sm:rounded-md">
+  <ul class="divide-y divide-gray-200">
+    <%= for bookmark <- @bookmarks do %>
+      <li>
+        <a href="<%= bookmark.url %>" class="block hover:bg-gray-50">
+          <div class="flex items-center px-4 py-4 sm:px-6">
+            <div class="flex items-center flex-1 min-w-0">
+              <div class="flex-1 min-w-0 px-4">
+                <div class="flex flex-col">
+                  <div class="flex items-center justify-between">
+                    <p class="text-lg font-medium text-indigo-600"><%= bookmark.name %></p>
+                    <%= if bookmark.favorite do %>
+                      <p class="mt-2 text-sm text-gray-500">
+                        <!-- Heroicon name: solid/check-circle -->
+                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                      </p>
+                    <% end %>
+                  </div>
+                  <p class="flex items-center mt-2 text-gray-500 text-md">
+                    <!-- Heroicon name: outline/url -->
+                   <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                    </svg>
+                    <span class="truncate"><%= bookmark.url %></span>
+                  </p> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>
