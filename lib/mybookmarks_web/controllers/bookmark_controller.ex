@@ -9,8 +9,8 @@ defmodule MybookmarksWeb.BookmarkController do
     render(conn, "index.html", bookmarks: bookmarks)
   end
 
-  def search(conn, %{"search" => search} = _params) do
-    bookmarks = Bookmarks.list_searched_bookmarks_by_user(conn.assigns.current_user, search)
+  def search(conn, %{"query" => query} = _params) do
+    bookmarks = Bookmarks.list_searched_bookmarks_by_user(conn.assigns.current_user, query)
     render(conn, "index.html", bookmarks: bookmarks)
   end
 
@@ -25,7 +25,7 @@ defmodule MybookmarksWeb.BookmarkController do
       {:ok, bookmark} ->
         conn
         |> put_flash(:info, "Bookmark created successfully.")
-        |> redirect(to: Routes.bookmark_path(conn, :show, bookmark))
+        |> redirect(to: Routes.bookmark_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -50,7 +50,7 @@ defmodule MybookmarksWeb.BookmarkController do
       {:ok, bookmark} ->
         conn
         |> put_flash(:info, "Bookmark updated successfully.")
-        |> redirect(to: Routes.bookmark_path(conn, :show, bookmark))
+        |> redirect(to: Routes.bookmark_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", bookmark: bookmark, changeset: changeset)

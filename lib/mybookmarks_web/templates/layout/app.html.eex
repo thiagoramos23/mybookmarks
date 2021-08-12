@@ -1,22 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Mybookmarks · Phoenix Framework</title>
+    <title>My Bookmarks</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <%# <header> %>
-    <%#   <section class="container"> %>
-    <%#     <nav role="navigation"> %>
-    <%#       <%= render "_user_menu.html", assigns %1> %>
-    <%#     </nav> %>
-    <%#   </section> %>
-    <%# </header> %>
-
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="min-h-screen bg-white">
       <nav class="bg-white border-b border-gray-200">
@@ -35,7 +27,10 @@
                 </p>
                 <%= link "Sign out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
               <% else %>
-                <%= link "Login", to: Routes.user_session_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
+                <div class="flex items-center">
+                  <%= link "Login", to: Routes.user_session_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
+                  <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
+                </div>
               <% end %>
            <div class="flex items-center -mr-2 sm:hidden">
               <!-- Mobile menu button -->

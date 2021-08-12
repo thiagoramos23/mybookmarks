@@ -28,7 +28,9 @@ defmodule Mybookmarks.Bookmarks.Bookmark do
   end
 
   def bookmarks_by_user_match_term(user, search) do
-    from b in bookmarks_by_user(user),
-      where: ilike(b.name, ^"%#{search}%")
+    from b in Bookmark,
+      where: b.user_id == ^user.id,
+      where: ilike(b.name, ^"%#{search}%"),
+      order_by: b.name
   end
 end
