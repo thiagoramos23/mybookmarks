@@ -37,9 +37,11 @@
   </div>
 
   <div class="pt-5">
+
     <div class="flex justify-end">
       <%= link "Cancel", to: Routes.bookmark_path(@conn, :index), class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
       <%= submit "Save", class: "inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent shadow-sm rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
+
   </div>
 <% end %>
