@@ -46,8 +46,8 @@
 <div class="overflow-hidden bg-white shadow sm:rounded-md">
   <ul class="divide-y divide-gray-200">
     <%= for bookmark <- @bookmarks do %>
-      <li>
-        <a href="<%= bookmark.url %>" class="block hover:bg-gray-50">
+      <a href="<%= bookmark.url %>" class="block">
+        <li>
           <div class="flex items-center px-4 py-4 sm:px-6">
             <div class="flex items-center flex-1 min-w-0">
               <div class="flex-1 min-w-0 px-4">
@@ -65,7 +65,7 @@
                       <% end %>
                     </div>
                     <div class="mt-6">
-                      <%= link "Edit", to: Routes.bookmark_path(@conn, :edit, bookmark), class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+                      <%= button "Edit", to: Routes.bookmark_path(@conn, :edit, bookmark), method: :get, class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
                     </div>
                   </div>
                   <p class="flex items-center mt-2 text-gray-500 text-md">
@@ -74,13 +74,13 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                     </svg>
                     <span class="truncate"><%= bookmark.url %></span>
-                  </p> 
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </a>
-      </li>
+        </li>
+      </a>
     <% end %>
   </ul>
 </div>
