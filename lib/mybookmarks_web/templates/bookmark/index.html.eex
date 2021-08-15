@@ -46,7 +46,7 @@
 <div class="overflow-hidden bg-white shadow sm:rounded-md">
   <ul class="divide-y divide-gray-200">
     <%= for bookmark <- @bookmarks do %>
-      <a href="<%= bookmark.url %>" class="block">
+      <a href="<%= bookmark.url %>" class="block" target="_blank">
         <li>
           <div class="flex items-center px-4 py-4 sm:px-6">
             <div class="flex items-center flex-1 min-w-0">
