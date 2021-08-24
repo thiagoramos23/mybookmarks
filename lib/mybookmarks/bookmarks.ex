@@ -19,7 +19,7 @@ defmodule Mybookmarks.Bookmarks do
 
   """
   def list_bookmarks do
-    Repo.all(Bookmark) 
+    Repo.all(Bookmark)
     |> Repo.preload(:user)
   end
 
