@@ -6,7 +6,8 @@ defmodule MybookmarksWeb.BookmarkController do
 
   def index(conn, _params) do
     bookmarks = Bookmarks.list_bookmarks_by_user(conn.assigns.current_user)
-    render(conn, "index.html", bookmarks: bookmarks)
+    read_laters = Bookmarks.list_read_laters_by_user(conn.assigns.current_user)
+    render(conn, "index.html", bookmarks: bookmarks, read_laters: read_laters)
   end
 
   def search(conn, %{"query" => query} = _params) do

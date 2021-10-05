@@ -1,0 +1,45 @@
+<%= form_for @changeset, @action, [class: "space-y-8 divide-y divide-gray-200"], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+    <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
+      <div>
+        <h3 class="text-lg font-medium leading-6 text-gray-900">
+          Add the URL you want to save and read it later
+        </h3>
+      </div>
+      <div class="space-y-6 sm:space-y-5">
+        <div class="sm:grid sm:grid-cols-4 sm:gap-1 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+            Name
+          </label>
+          <div class="mt-1 sm:mt-0 sm:col-span-3">
+            <%= text_input f, :name, class: "block w-full max-w-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+            <%= error_tag f, :name %>
+          </div>
+        </div>
+
+        <div class="sm:grid sm:grid-cols-4 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+          <label for="last-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+            URL Address
+          </label>
+          <div class="mt-1 sm:mt-0 sm:col-span-3">
+            <%= text_input f, :url, class: "block w-full border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+            <%= error_tag f, :url %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-5">
+    <div class="flex justify-end">
+      <%= link "Cancel", to: Routes.bookmark_path(@conn, :index), class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= submit "Save", class: "inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent shadow-sm rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+    </div>
+  </div>
+<% end %>
