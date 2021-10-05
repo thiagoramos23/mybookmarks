@@ -57,6 +57,7 @@ defmodule MybookmarksWeb.Router do
 
     get "/search", BookmarkController, :search
     resources "/", BookmarkController
+    resources "/readings", ReadLaterController, except: [:index]
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
