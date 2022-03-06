@@ -9,20 +9,6 @@ defmodule Mybookmarks.Bookmarks do
   alias Mybookmarks.Bookmarks.Bookmark
 
   @doc """
-  Returns the list of bookmarks.
-
-  ## Examples
-
-      iex> list_bookmarks()
-      [%Bookmark{}, ...]
-
-  """
-  def list_bookmarks do
-    Repo.all(Bookmark)
-    |> Repo.preload(:user)
-  end
-
-  @doc """
   Returns the list of bookmarks for the user.
 
   ## Examples
@@ -31,10 +17,8 @@ defmodule Mybookmarks.Bookmarks do
       [%Bookmark{}, ...]
 
   """
-  def list_bookmarks_by_user(user) do
-    Repo.all(Bookmark.bookmarks_by_user(user))
-    Repo.all(Bookmark.bookmarks_by_user(user))
-    |> Repo.preload(:user)
+  def list_bookmarks_by_user(user, page \\ 1) do
+    Bookmark.bookmarks_by_user(user, %{page: page, preloads: [:user]})
   end
 
   @doc """
@@ -131,103 +115,5 @@ defmodule Mybookmarks.Bookmarks do
   """
   def change_bookmark(%Bookmark{} = bookmark, attrs \\ %{}) do
     Bookmark.changeset(bookmark, attrs)
-  end
-
-  alias Mybookmarks.Bookmarks.ReadLater
-
-  @doc """
-  Returns the list of read_laters.
-
-  ## Examples
-
-      iex> list_read_laters_by_user(user)
-      [%ReadLater{}, ...]
-
-  """
-  def list_read_laters_by_user(user, limit \\ 5) do
-    Repo.all(ReadLater.read_laters_by_user(user, limit))
-    |> Repo.preload(:user)
-  end
-
-  @doc """
-  Gets a single read_later.
-
-  Raises `Ecto.NoResultsError` if the Read later does not exist.
-
-  ## Examples
-
-      iex> get_read_later!(123)
-      %ReadLater{}
-
-      iex> get_read_later!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_read_later!(id), do: Repo.get!(ReadLater, id) |> Repo.preload(:user)
-
-  @doc """
-  Creates a read_later.
-
-  ## Examples
-
-      iex> create_read_later(%{field: value})
-      {:ok, %ReadLater{}}
-
-      iex> create_read_later(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_read_later(attrs \\ %{}, user) do
-    %ReadLater{}
-    |> ReadLater.changeset(attrs)
-    |> Ecto.Changeset.put_assoc(:user, user)
-    |> Repo.insert()
-  end
-
-  @doc """
-  Updates a read_later.
-
-  ## Examples
-
-      iex> update_read_later(read_later, %{field: new_value})
-      {:ok, %ReadLater{}}
-
-      iex> update_read_later(read_later, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_read_later(%ReadLater{} = read_later, attrs) do
-    read_later
-    |> ReadLater.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a read_later.
-
-  ## Examples
-
-      iex> delete_read_later(read_later)
-      {:ok, %ReadLater{}}
-
-      iex> delete_read_later(read_later)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_read_later(%ReadLater{} = read_later) do
-    Repo.delete(read_later)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking read_later changes.
-
-  ## Examples
-
-      iex> change_read_later(read_later)
-      %Ecto.Changeset{data: %ReadLater{}}
-
-  """
-  def change_read_later(%ReadLater{} = read_later, attrs \\ %{}) do
-    ReadLater.changeset(read_later, attrs)
   end
 end
