@@ -23,13 +23,13 @@ defmodule Mybookmarks.Bookmarks.Bookmark do
     |> validate_required([:name, :url, :favorite, :type])
   end
 
-  def bookmarks_by_user(user, page \\ 1) do
+  def bookmarks_by_user(user, opts) do
     query = 
       from b in Bookmark,
         where: b.user_id == ^user.id,
         order_by: b.name
 
-    Paginator.call(query, %{page: page})
+    Paginator.call(query, opts)
   end
 
   def bookmarks_by_user_match_term(user, search, page \\ 1) do

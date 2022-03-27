@@ -5,8 +5,8 @@ defmodule MybookmarksWeb.BookmarkControllerTest do
 
   alias Mybookmarks.Bookmarks
 
-  @create_attrs %{favorite: true, name: "some name", url: "some url"}
-  @update_attrs %{favorite: false, name: "some updated name", url: "some updated url"}
+  @create_attrs %{favorite: true, name: "some name", url: "some url", type: :read_it_later}
+  @update_attrs %{favorite: false, name: "some updated name", url: "some updated url", type: :read_it_later}
   @invalid_attrs %{favorite: nil, name: nil, url: nil}
 
   setup :register_and_log_in_user
@@ -27,23 +27,20 @@ defmodule MybookmarksWeb.BookmarkControllerTest do
   describe "new bookmark" do
     test "renders form", %{conn: conn} do
       conn = get(conn, Routes.bookmark_path(conn, :new))
-      assert html_response(conn, 200) =~ "Add the URL you want to save and the name for it"
+      assert html_response(conn, 200) =~ "Name"
+      assert html_response(conn, 200) =~ "URL Address"
     end
   end
 
   describe "create bookmark" do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post(conn, Routes.bookmark_path(conn, :create), bookmark: @create_attrs)
-
       assert redirected_to(conn) == Routes.bookmark_path(conn, :index)
-
-      conn = get(conn, Routes.bookmark_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Bookmarks"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.bookmark_path(conn, :create), bookmark: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Add the URL you want to save and the name for it"
+      assert html_response(conn, 200) =~ "Name"
     end
   end
 
@@ -52,7 +49,8 @@ defmodule MybookmarksWeb.BookmarkControllerTest do
 
     test "renders form for editing chosen bookmark", %{conn: conn, bookmark: bookmark} do
       conn = get(conn, Routes.bookmark_path(conn, :edit, bookmark))
-      assert html_response(conn, 200) =~ "Add the URL you want to save and the name for it"
+      assert html_response(conn, 200) =~ "Name"
+      assert html_response(conn, 200) =~ "URL Address"
     end
   end
 
@@ -62,14 +60,11 @@ defmodule MybookmarksWeb.BookmarkControllerTest do
     test "redirects when data is valid", %{conn: conn, bookmark: bookmark} do
       conn = put(conn, Routes.bookmark_path(conn, :update, bookmark), bookmark: @update_attrs)
       assert redirected_to(conn) == Routes.bookmark_path(conn, :index)
-
-      conn = get(conn, Routes.bookmark_path(conn, :show, bookmark))
-      assert html_response(conn, 200) =~ "some updated name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, bookmark: bookmark} do
       conn = put(conn, Routes.bookmark_path(conn, :update, bookmark), bookmark: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Add the URL you want to save and the name for it"
+      assert html_response(conn, 200) =~ "Name"
     end
   end
 

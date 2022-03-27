@@ -12,8 +12,8 @@ defmodule MybookmarksWeb.UserSessionControllerTest do
       conn = get(conn, Routes.user_session_path(conn, :new))
       response = html_response(conn, 200)
       assert response =~ "Sign in to your account"
-      assert response =~ "Email"
-      assert response =~ "Password"
+      assert response =~ "Login"
+      assert response =~ "Register"
     end
 
     test "redirects if already logged in", %{conn: conn, user: user} do
@@ -36,7 +36,7 @@ defmodule MybookmarksWeb.UserSessionControllerTest do
       conn = get(conn, "/")
       response = html_response(conn, 200)
       assert response =~ user.email
-      assert response =~ "Sign out"
+      assert response =~ "Sign out</a>"
     end
 
     test "logs the user in with remember me", %{conn: conn, user: user} do
@@ -74,7 +74,7 @@ defmodule MybookmarksWeb.UserSessionControllerTest do
         })
 
       response = html_response(conn, 200)
-      assert response =~ "Sign in"
+      assert response =~ "Sign in to your account"
       assert response =~ "Invalid email or password"
     end
   end

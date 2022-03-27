@@ -10,7 +10,7 @@ defmodule MybookmarksWeb.UserRegistrationController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, user_params) do
+  def create(conn, %{"user" => user_params}) do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         {:ok, _} =

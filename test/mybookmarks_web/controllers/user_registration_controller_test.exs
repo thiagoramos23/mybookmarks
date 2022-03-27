@@ -7,8 +7,9 @@ defmodule MybookmarksWeb.UserRegistrationControllerTest do
     test "renders registration page", %{conn: conn} do
       conn = get(conn, Routes.user_registration_path(conn, :new))
       response = html_response(conn, 200)
-      assert response =~ "Register"
+      assert response =~ "Register an account"
       assert response =~ "Sign in"
+      assert response =~ "Register"
     end
 
     test "redirects if already logged in", %{conn: conn} do
@@ -34,7 +35,7 @@ defmodule MybookmarksWeb.UserRegistrationControllerTest do
       conn = get(conn, "/")
       response = html_response(conn, 200)
       assert response =~ email
-      assert response =~ "Sign out"
+      assert response =~ "Sign out</a>"
     end
 
     test "render errors for invalid data", %{conn: conn} do
