@@ -25,7 +25,7 @@ defmodule Mybookmarks.BookmarksTest do
       _bookmark              = bookmark_fixture()
       another_user          = user_fixture(%{email: "test@test.com"})
       another_user_bookmark = bookmark_fixture(@valid_attrs, another_user)
-      assert Bookmarks.list_bookmarks_by_user(another_user) == [another_user_bookmark]
+      assert Bookmarks.list_bookmarks_by_user(another_user).data == [another_user_bookmark]
     end
 
     test "get_bookmark!/1 returns the bookmark with given id" do

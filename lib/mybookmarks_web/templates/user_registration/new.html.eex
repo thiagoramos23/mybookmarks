@@ -6,7 +6,7 @@
     </h2>
   </div>
 
-  <%= form_for @conn, Routes.user_registration_path(@conn, :create), fn f -> %>
+  <%= form_for @changeset, Routes.user_registration_path(@conn, :create), fn f -> %>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" action="#" method="POST">
@@ -28,7 +28,7 @@
   
           <div class="flex items-center justify-between mt-3 mb-3">
             <div class="text-sm">
-              <%= link "Login", to: Routes.user_session_path(@conn, :new), class: "font-semibold text-indigo-600 hover:text-indigo-500" %>
+              <%= link "Sign in", to: Routes.user_session_path(@conn, :new), class: "font-semibold text-indigo-600 hover:text-indigo-500" %>
             </div>
             <div class="text-sm">
               <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "font-medium text-indigo-600 hover:text-indigo-500" %>

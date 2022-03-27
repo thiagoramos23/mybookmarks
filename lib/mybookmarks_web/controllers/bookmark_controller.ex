@@ -4,9 +4,10 @@ defmodule MybookmarksWeb.BookmarkController do
   alias Mybookmarks.Bookmarks
   alias Mybookmarks.Bookmarks.Bookmark
 
-  def index(conn, _params) do
-    bookmarks = Bookmarks.list_bookmarks_by_user(conn.assigns.current_user)
-    render(conn, "index.html", bookmarks: bookmarks)
+  def index(conn, params) do
+    page = String.to_integer(params["page"] || "1")
+    page = Bookmarks.list_bookmarks_by_user(conn.assigns.current_user, page)
+    render(conn, "index.html", page: page)
   end
 
   def search(conn, %{"query" => query} = _params) do
@@ -22,7 +23,8 @@ defmodule MybookmarksWeb.BookmarkController do
   def create(conn, %{"bookmark" => bookmark_params}) do
     user = conn.assigns.current_user
     case Bookmarks.create_bookmark(bookmark_params, user) do
-      {:ok, bookmark} ->
+      {:ok, _} ->
+
         conn
         |> put_flash(:info, "Bookmark created successfully.")
         |> redirect(to: Routes.bookmark_path(conn, :index))
@@ -47,7 +49,7 @@ defmodule MybookmarksWeb.BookmarkController do
     bookmark = Bookmarks.get_bookmark!(id)
 
     case Bookmarks.update_bookmark(bookmark, bookmark_params) do
-      {:ok, bookmark} ->
+      {:ok, _} ->
         conn
         |> put_flash(:info, "Bookmark updated successfully.")
         |> redirect(to: Routes.bookmark_path(conn, :index))

@@ -20,7 +20,7 @@
 <h2 class="mb-2 text-2xl antialiased text-gray-800">My Bookmarks</h2>
 <div class="overflow-hidden bg-white shadow sm:rounded-md">
   <ul class="divide-y divide-gray-200">
-    <%= for bookmark <- @bookmarks do %>
+    <%= for bookmark <- @page.data do %>
       <li>
         <a href="<%= bookmark.url %>" class="block hover:bg-gray-50">
           <div class="flex items-center px-4 py-4 sm:px-6">
@@ -58,4 +58,5 @@
       </li>
     <% end %>
   </ul>
+  <%= render MybookmarksWeb.SharedView, "_pagination.html", page: @page, conn: @conn %>
 </div>
