@@ -6,13 +6,16 @@ defmodule MybookmarksWeb.BookmarkController do
 
   def index(conn, params) do
     page = String.to_integer(params["page"] || "1")
-    page = Bookmarks.list_bookmarks_by_user(conn.assigns.current_user, page)
-    render(conn, "index.html", page: page)
+    type = params["type"] || "read_it_later"
+
+    pagination = Bookmarks.list_bookmarks_by_user(conn.assigns.current_user, type, page)
+    render(conn, "index.html", pagination: pagination, type: type)
   end
 
-  def search(conn, %{"query" => query} = _params) do
-    bookmarks = Bookmarks.list_searched_bookmarks_by_user(conn.assigns.current_user, query)
-    render(conn, "index.html", bookmarks: bookmarks)
+  def search(conn, %{"query" => query} = params) do
+    page = String.to_integer(params["page"] || "1")
+    pagination = Bookmarks.list_searched_bookmarks_by_user(conn.assigns.current_user, query, page)
+    render(conn, "index.html", pagination: pagination)
   end
 
   def new(conn, _params) do

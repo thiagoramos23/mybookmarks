@@ -17,8 +17,8 @@ defmodule Mybookmarks.Bookmarks do
       [%Bookmark{}, ...]
 
   """
-  def list_bookmarks_by_user(user, page \\ 1) do
-    Bookmark.bookmarks_by_user(user, %{page: page, preloads: [:user]})
+  def list_bookmarks_by_user(user, type, page \\ 1) do
+    Bookmark.bookmarks_by_user(user, type, %{page: page, preloads: [:user]})
   end
 
   @doc """
@@ -30,8 +30,8 @@ defmodule Mybookmarks.Bookmarks do
       [%Bookmark{}, ...]
 
   """
-  def list_searched_bookmarks_by_user(user, search) do
-    Repo.all(Bookmark.bookmarks_by_user_match_term(user, search))
+  def list_searched_bookmarks_by_user(user, search, page \\ 1) do
+    Repo.all(Bookmark.bookmarks_by_user_match_term(user, search, page))
     |> Repo.preload(:user)
   end
 
