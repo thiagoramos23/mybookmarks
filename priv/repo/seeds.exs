@@ -33,8 +33,8 @@ end)
 
 Enum.each(1..20, fn _ ->
   %Bookmark{
-   name: "Test",
-   url: "www.google.com",
+   name: "Test Facebook",
+   url: "www.facebook.com",
    user: user,
    type: :read_it_later
   }
@@ -43,10 +43,44 @@ end)
 
 Enum.each(1..20, fn _ ->
   %Bookmark{
-   name: "Test",
+   name: "Test Twitter",
    url: "www.google.com",
    user: user,
    type: :article
   }
   |> Repo.insert()
 end)
+
+Enum.each(1..20, fn _ ->
+  %Bookmark{
+   name: "Test Linked in",
+   url: "www.google.com",
+   user: user,
+   type: :article
+  }
+  |> Repo.insert()
+end)
+
+Enum.each(1..20, fn _ ->
+  %Bookmark{
+   name: "Test Instagram",
+   url: "www.google.com",
+   user: user,
+   type: :article
+  }
+  |> Repo.insert()
+end)
+
+Enum.each(1..20, fn _ ->
+  %Bookmark{
+   name: "Test Max",
+   url: "www.google.com",
+   user: user,
+   type: :article
+  }
+  |> Repo.insert()
+end)
+
+
+
+

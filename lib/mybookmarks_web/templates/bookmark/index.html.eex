@@ -17,10 +17,49 @@
 <br/>
 <br/>
 
-<h2 class="mb-2 text-2xl antialiased text-gray-800">My Bookmarks</h2>
-<div class="overflow-hidden bg-white shadow sm:rounded-md">
+<div class="flex justify-center">
+  <div class="sm:hidden">
+    <label for="tabs" class="sr-only">Select a tab</label>
+    <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+    <select id="tabs" name="tabs" class="block w-full border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
+      <option>
+        <%= link "Read it Later", to: Routes.bookmark_path(@conn, :index, type: :read_it_later) %>
+      </option>
+
+      <option>
+        <%= link "Learning", to: Routes.bookmark_path(@conn, :index, type: :learning) %>
+      </option>
+
+      <option selected>
+        <%= link "Blog/Articles", to: Routes.bookmark_path(@conn, :index, type: :blog) %>
+      </option>
+
+      <option selected>
+        <%= link "Other", to: Routes.bookmark_path(@conn, :index, type: :other) %>
+      </select>
+  </div>
+  <div class="hidden sm:block">
+    <nav class="flex space-x-4" aria-label="Tabs">
+      <!-- Current: "bg-indigo-100 text-indigo-700", Default: "text-gray-500 hover:text-gray-700" -->
+
+      <%= link "Read it Later", to: Routes.bookmark_path(@conn, :index, type: :read_it_later),
+        class: "px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 rounded-md #{if @type === "read_it_later", do: "bg-indigo-100 text-indigo-700", else: ""}" %>
+
+      <%= link "Learning", to: Routes.bookmark_path(@conn, :index, type: :learning),
+        class: "px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 rounded-md #{if @type === "learning", do: "bg-indigo-100 text-indigo-700", else: ""}" %>
+
+      <%= link "Blog/Articles", to: Routes.bookmark_path(@conn, :index, type: :blog),
+        class: "px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 rounded-md #{if @type === "blog", do: "bg-indigo-100 text-indigo-700", else: ""}" %>
+
+      <%= link "Other", to: Routes.bookmark_path(@conn, :index, type: :other),
+        class: "px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 rounded-md #{if @type === "other", do: "bg-indigo-100 text-indigo-700", else: ""}" %>
+    </nav>
+  </div>
+</div> 
+
+<div class="mt-2 overflow-hidden bg-white shadow sm:rounded-md">
   <ul class="divide-y divide-gray-200">
-    <%= for bookmark <- @page.data do %>
+    <%= for bookmark <- @pagination.data do %>
       <li>
         <a href="<%= bookmark.url %>" class="block hover:bg-gray-50">
           <div class="flex items-center px-4 py-4 sm:px-6">
@@ -59,5 +98,5 @@
       </a>
     <% end %>
   </ul>
-  <%= render MybookmarksWeb.SharedView, "_pagination.html", page: @page, conn: @conn %>
+  <%= render MybookmarksWeb.SharedView, "_pagination.html", pagination: @pagination, pagination_link: Routes.bookmark_path(@conn, :index, type: @type) %>
 </div>

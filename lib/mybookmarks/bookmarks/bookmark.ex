@@ -10,7 +10,7 @@ defmodule Mybookmarks.Bookmarks.Bookmark do
     field :favorite, :boolean, default: false
     field :name, :string
     field :url, :string
-    field :type, Ecto.Enum, values: [:blog, :read_it_later, :article]
+    field :type, Ecto.Enum, values: [:blog, :read_it_later, :learning, :other]
     belongs_to :user, Mybookmarks.Accounts.User, foreign_key: :user_id
 
     timestamps()
@@ -23,11 +23,13 @@ defmodule Mybookmarks.Bookmarks.Bookmark do
     |> validate_required([:name, :url, :favorite, :type])
   end
 
-  def bookmarks_by_user(user, opts) do
+  def bookmarks_by_user(user, type, opts) do
     query = 
       from b in Bookmark,
         where: b.user_id == ^user.id,
+        where: b.type == ^type,
         order_by: b.name
+
 
     Paginator.call(query, opts)
   end

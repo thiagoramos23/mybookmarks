@@ -16,7 +16,7 @@ defmodule Mybookmarks.Pagination.Paginator do
     final_query =
       from result in query,
         limit: ^limit,
-        offset: ^(page * limit),
+        offset: ^((page - 1) * limit),
         preload: ^preloads
 
     total = Repo.aggregate(query, :count)
