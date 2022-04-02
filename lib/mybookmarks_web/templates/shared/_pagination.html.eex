@@ -20,7 +20,7 @@
           to
           <span class="font-medium">
             <%= if @pagination.total > @pagination.size do %>
-              <%= @pagination.page * @pagination.size %>
+              <%= if (@pagination.page * @pagination.size) > @pagination.total, do: @pagination.total, else: @pagination.page * @pagination.size %>
             <% else %>
               <%= @pagination.total %>
             <% end %>
