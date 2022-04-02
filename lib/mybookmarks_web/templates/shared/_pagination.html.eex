@@ -14,7 +14,7 @@
             <%= if @pagination.page == 1 do %>
               <%= if @pagination.total == 0, do: 0, else: 1 %>
             <% else %>
-              <%= (@pagination.page * @pagination.size) %>
+              <%= (@pagination.page * @pagination.size) - @pagination.size %>
             <% end %>
           </span>
           to
@@ -22,7 +22,7 @@
             <%= if @pagination.total > @pagination.size do %>
               <%= @pagination.page * @pagination.size %>
             <% else %>
-              0
+              <%= @pagination.total %>
             <% end %>
           </span>
           of
@@ -45,7 +45,7 @@
               class: "relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-indigo-600 border bg-indigo-100 border-indigo-300" %>
           <% end %>
 
-          <%= Enum.map 1..(div(@pagination.total, @pagination.size)), fn(item) -> %>
+          <%= Enum.map 1..(ceil(@pagination.total/@pagination.size)), fn(item) -> %>
             <%= link item, to: "#{@pagination_link}&page=#{item}", 
               class: "relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-indigo-600 border border-indigo-300" %>
           <% end %>
