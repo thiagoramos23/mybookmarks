@@ -94,8 +94,8 @@
               </div>
             </div>
           </div>
-        </a>
-      </li>
+        </li>
+      </a>
     <% end %>
   </ul>
   <%= render MybookmarksWeb.SharedView, "_pagination.html", pagination: @pagination, pagination_link: Routes.bookmark_path(@conn, :index, type: @type) %>

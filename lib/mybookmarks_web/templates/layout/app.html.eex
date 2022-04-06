@@ -28,7 +28,7 @@
                 <%= link "Sign out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
               <% else %>
                 <div class="flex items-center">
-                  <%= link "Login", to: Routes.user_session_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
+                  <%= link "Sign in", to: Routes.user_session_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
                   <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700", tabindex: "-1", id: "user-menu-item-2" %>
                 </div>
               <% end %>
