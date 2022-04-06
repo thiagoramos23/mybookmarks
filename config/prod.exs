@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :mybookmarks, MybookmarksWeb.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "my-bookmarks-application.herokuapp.com", port: 443],
+  url: [scheme: System.get_env("DOMAIN_HTTP_SCHEME"), host: System.get_env("DOMAIN_HTTP_URL"), port: 80],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
