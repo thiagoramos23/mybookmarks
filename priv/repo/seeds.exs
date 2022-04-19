@@ -46,7 +46,7 @@ Enum.each(1..20, fn _ ->
    name: "Test Twitter",
    url: "www.google.com",
    user: user,
-   type: :article
+   type: :learning
   }
   |> Repo.insert()
 end)
@@ -56,7 +56,7 @@ Enum.each(1..20, fn _ ->
    name: "Test Linked in",
    url: "www.google.com",
    user: user,
-   type: :article
+   type: :learning
   }
   |> Repo.insert()
 end)
@@ -66,7 +66,7 @@ Enum.each(1..20, fn _ ->
    name: "Test Instagram",
    url: "www.google.com",
    user: user,
-   type: :article
+   type: :learning
   }
   |> Repo.insert()
 end)
@@ -76,7 +76,7 @@ Enum.each(1..20, fn _ ->
    name: "Test Max",
    url: "www.google.com",
    user: user,
-   type: :article
+   type: :learning
   }
   |> Repo.insert()
 end)
