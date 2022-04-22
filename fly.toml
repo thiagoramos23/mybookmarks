@@ -1,4 +1,4 @@
-# fly.toml file generated for mybookmark on 2022-04-17T22:46:38-03:00
+# fly.toml file generated for mybookmark on 2022-04-18T23:06:22-03:00
 
 app = "mybookmark"
 
