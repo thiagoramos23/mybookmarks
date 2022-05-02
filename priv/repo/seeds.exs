@@ -23,64 +23,50 @@ alias Mybookmarks.Bookmarks.Bookmark
 
 Enum.each(1..20, fn _ ->
   %Bookmark{
-   name: "Test",
-   url: "www.google.com",
-   user: user,
-   type: :blog
+    name: "Test",
+    url: "www.google.com",
+    user: user,
+    type: :blog
   }
   |> Repo.insert()
 end)
 
 Enum.each(1..20, fn _ ->
   %Bookmark{
-   name: "Test Facebook",
-   url: "www.facebook.com",
-   user: user,
-   type: :read_it_later
+    name: "Test Facebook",
+    url: "www.facebook.com",
+    user: user,
+    type: :read_it_later
   }
   |> Repo.insert()
 end)
 
 Enum.each(1..20, fn _ ->
   %Bookmark{
-   name: "Test Twitter",
-   url: "www.google.com",
-   user: user,
-   type: :article
+    name: "Test Twitter",
+    url: "www.google.com",
+    user: user,
+    type: :blog
   }
   |> Repo.insert()
 end)
 
 Enum.each(1..20, fn _ ->
   %Bookmark{
-   name: "Test Linked in",
-   url: "www.google.com",
-   user: user,
-   type: :article
+    name: "Test Linked in",
+    url: "www.google.com",
+    user: user,
+    type: :learning
   }
   |> Repo.insert()
 end)
 
 Enum.each(1..20, fn _ ->
   %Bookmark{
-   name: "Test Instagram",
-   url: "www.google.com",
-   user: user,
-   type: :article
+    name: "Test Instagram",
+    url: "www.google.com",
+    user: user,
+    type: :other
   }
   |> Repo.insert()
 end)
-
-Enum.each(1..20, fn _ ->
-  %Bookmark{
-   name: "Test Max",
-   url: "www.google.com",
-   user: user,
-   type: :article
-  }
-  |> Repo.insert()
-end)
-
-
-
-
