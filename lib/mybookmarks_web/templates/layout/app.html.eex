@@ -16,8 +16,7 @@
           <div class="flex justify-between h-16">
             <div class="flex">
               <div class="flex items-center flex-shrink-0">
-                <img class="block w-auto h-8 lg:hidden" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-                <img class="hidden w-auto h-8 lg:block" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
+                <span class="antialiased text-purple-800 text-2xl font-semibold font-sans">My Bookmarks</span>
               </div>
             </div>
             <div class="hidden sm:ml-6 sm:flex sm:items-center">
