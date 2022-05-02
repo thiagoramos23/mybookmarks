@@ -6,7 +6,12 @@ defmodule MybookmarksWeb.BookmarkControllerTest do
   alias Mybookmarks.Bookmarks
 
   @create_attrs %{favorite: true, name: "some name", url: "some url", type: :read_it_later}
-  @update_attrs %{favorite: false, name: "some updated name", url: "some updated url", type: :read_it_later}
+  @update_attrs %{
+    favorite: false,
+    name: "some updated name",
+    url: "some updated url",
+    type: :read_it_later
+  }
   @invalid_attrs %{favorite: nil, name: nil, url: nil}
 
   setup :register_and_log_in_user
@@ -20,7 +25,7 @@ defmodule MybookmarksWeb.BookmarkControllerTest do
   describe "index" do
     test "lists all bookmarks by user", %{conn: conn} do
       conn = get(conn, Routes.bookmark_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Bookmarks"
+      assert html_response(conn, 200) =~ "There is no result."
     end
   end
 
@@ -74,6 +79,7 @@ defmodule MybookmarksWeb.BookmarkControllerTest do
     test "deletes chosen bookmark", %{conn: conn, bookmark: bookmark} do
       conn = delete(conn, Routes.bookmark_path(conn, :delete, bookmark))
       assert redirected_to(conn) == Routes.bookmark_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.bookmark_path(conn, :show, bookmark))
       end
