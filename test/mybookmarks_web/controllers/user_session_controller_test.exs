@@ -12,7 +12,7 @@ defmodule MybookmarksWeb.UserSessionControllerTest do
       conn = get(conn, Routes.user_session_path(conn, :new))
       response = html_response(conn, 200)
       assert response =~ "Sign in to your account"
-      assert response =~ "Login"
+      assert response =~ "Sign in"
       assert response =~ "Register"
     end
 
