@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center max-h-screen bg-gray-50 sm:px-6 lg:px-8">
+<div class="flex flex-col justify-center max-h-screen bg-white sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <h2 class="mt-6 mb-3 font-extrabold text-center text-red-700 text-3md">
       <%= @error_message %>
@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="flex flex-col justify-center max-h-screen bg-gray-50 sm:px-6 lg:px-8">
+<div class="flex flex-col justify-center max-h-screen bg-white sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <img class="w-auto h-12 mx-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
     <h1 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
