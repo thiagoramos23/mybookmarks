@@ -1,10 +1,15 @@
 <h1>Forgot your password?</h1>
 
 <%= form_for :user, Routes.user_reset_password_path(@conn, :create), fn f -> %>
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-
-  <div>
+  <div class="sm:grid sm:grid-cols-4 sm:gap-1 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+      Email
+    </label>
+    <div class="mt-1 sm:mt-0 sm:col-span-3">
+      <%= email_input f, :email, required: true, class: "block w-full max-w-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    </div>
+  </div>
+  <div class="px-2 bg-green-700 hover:bg-green-800 rounded-md w-72 py-2 text-white antialiased shadow-sm text-center">
     <%= submit "Send instructions to reset password" %>
   </div>
 <% end %>
