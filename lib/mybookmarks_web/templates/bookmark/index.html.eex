@@ -65,11 +65,11 @@
                 <div class="grid grid-flow-col grid-cols-1">
                   <div class="flex flex-col items-start sm:flex-initial">
                     <p class="mr-4 text-lg font-medium text-indigo-600"><%= bookmark.name %></p>
-                    <div class="flex items-center text-gray-500 text-md">
+                    <div class="flex items-center text-gray-500 text-md w-4/5 break-words">
                       <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                       </svg>
-                      <p class="truncate md:w-96 sm:w-20"><%= bookmark.url %></p>
+                      <p class="break-all"><%= bookmark.url %></p>
                     </div>
                   </div>
                   <div class="flex items-center justify-self-end">
