@@ -31,8 +31,7 @@ defmodule Mybookmarks.Bookmarks do
 
   """
   def list_searched_bookmarks_by_user(user, search, page \\ 1) do
-    Repo.all(Bookmark.bookmarks_by_user_match_term(user, search, page))
-    |> Repo.preload(:user)
+    Bookmark.bookmarks_by_user_match_term(user, search, %{page: page, preloads: [:user]})
   end
 
   @doc """

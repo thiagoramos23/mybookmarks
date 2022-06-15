@@ -21,11 +21,22 @@ defmodule Mybookmarks.BookmarksTest do
       bookmark
     end
 
-    test "list_bookmarks_by_user/1 returns all bookmarks for the user" do
-      _bookmark              = bookmark_fixture()
-      another_user          = user_fixture(%{email: "test@test.com"})
+    test "list_bookmarks_by_user/3 returns all bookmarks for the user" do
+      _bookmark = bookmark_fixture()
+      another_user = user_fixture(%{email: "test@test.com"})
       another_user_bookmark = bookmark_fixture(@valid_attrs, another_user)
       assert Bookmarks.list_bookmarks_by_user(another_user, :blog).data == [another_user_bookmark]
+    end
+
+    test "list_searched_bookmarks_by_user/3 returns the bookmarks that match the query" do
+      bookmark = bookmark_fixture(%{name: "Facebook"})
+      bookmark2 = bookmark_fixture(%{name: "face"}, bookmark.user)
+      _bookmark3 = bookmark_fixture(%{name: "Google"}, bookmark.user)
+
+      assert Bookmarks.list_searched_bookmarks_by_user(bookmark.user, "face").data == [
+               bookmark,
+               bookmark2
+             ]
     end
 
     test "get_bookmark!/1 returns the bookmark with given id" do

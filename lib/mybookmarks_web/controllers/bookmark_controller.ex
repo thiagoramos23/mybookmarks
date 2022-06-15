@@ -15,7 +15,7 @@ defmodule MybookmarksWeb.BookmarkController do
   def search(conn, %{"query" => query} = params) do
     page = String.to_integer(params["page"] || "1")
     pagination = Bookmarks.list_searched_bookmarks_by_user(conn.assigns.current_user, query, page)
-    render(conn, "index.html", pagination: pagination)
+    render(conn, "index.html", pagination: pagination, type: "")
   end
 
   def new(conn, _params) do
@@ -25,9 +25,9 @@ defmodule MybookmarksWeb.BookmarkController do
 
   def create(conn, %{"bookmark" => bookmark_params}) do
     user = conn.assigns.current_user
+
     case Bookmarks.create_bookmark(bookmark_params, user) do
       {:ok, _} ->
-
         conn
         |> put_flash(:info, "Bookmark created successfully.")
         |> redirect(to: Routes.bookmark_path(conn, :index))
