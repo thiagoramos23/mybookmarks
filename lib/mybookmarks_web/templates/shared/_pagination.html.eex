@@ -50,14 +50,14 @@
               class: "relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-indigo-600 border border-indigo-300" %>
           <% end %>
 
-          <%= if @pagination.total >= (@pagination.page * @pagination.size) do %>
-            <%= link raw(~s(<span class="sr-only">Next</span><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>)), 
-              to: "", 
-              class: "relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 border bg-gray-100 border-gray-300" %>
-          <% else %>
+          <%= if @pagination.total > (@pagination.page * @pagination.size) do %>
             <%= link raw(~s(<span class="sr-only">Next</span><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>)), 
               to: "#{@pagination_link}&page=#{@pagination.page + 1}", 
               class: "relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-indigo-600 border bg-indigo-100 border-indigo-300"%>
+          <% else %>
+            <%= link raw(~s(<span class="sr-only">Next</span><svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>)), 
+              to: "", 
+              class: "relative z-10 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 border bg-gray-100 border-gray-300" %>
           <% end %>
         </nav>
       <% end %> 

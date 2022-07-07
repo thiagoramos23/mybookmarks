@@ -28,7 +28,7 @@ defmodule Mybookmarks.Bookmarks.Bookmark do
       from b in Bookmark,
         where: b.user_id == ^user.id,
         where: b.type == ^type,
-        order_by: b.name
+        order_by: [desc: b.inserted_at]
 
     Paginator.call(query, opts)
   end
